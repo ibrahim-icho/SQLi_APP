@@ -1,0 +1,23 @@
+<div class="card flex justify-content-center">
+    <p-accordion [activeIndex]="0">
+        <ng-container *ngFor="let incident of incidents; let i = index">
+            <p-accordionTab [header]="incident.title">
+                <p>
+                    {{ showFullDescription[i] ? incident.description : (incident.description | slice:0:150) }}
+                    <ng-container *ngIf="incident.description.length > 150">
+                        <a href="#" (click)="toggleDescription($event, i)">
+                            {{ showFullDescription[i] ? 'View Less' : 'View More' }}
+                        </a>
+                    </ng-container>
+                </p>
+                <div class="divider"></div>
+                <div class="incident-properties">
+                    <p><strong>Date:</strong> {{ incident.createdon }}</p>
+                    <p><strong>Ticket number:</strong> {{ incident.ticketnumber }}</p>
+                    <p><strong>product name:</strong> {{ incident.name }}</p>
+                    <p><strong>product price:</strong> {{ incident.price }}</p>
+                </div>
+            </p-accordionTab>
+        </ng-container>
+    </p-accordion>
+</div>
